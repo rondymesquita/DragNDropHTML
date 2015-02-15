@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<style>
+
+    body{
+        background: #eee;
+    }
+
+    .page{
+        background: #fff;
+        width:1100px;
+        margin: auto;
+        min-height:200px;
+        padding:20px;
+    }
+    .document{
+        width:1024px;
+        height: 768px;
+        border:1px solid #aaa;
+        margin: auto;
+        background: url('middleearthMap.jpg');
+        overflow: hidden;
+    }
+    .pin{
+        height: 25%;
+        vertical-align: middle;
+        display: block;
+        margin: auto;
+        margin-top: 25%;
+
+    }
+    .my-table{
+        height: 100%;
+    }
+    .my-table,
+    .my-table .row,
+    .my-table .col-md-4{
+        border: 2px solid #fff;
+        margin:0;
+        padding: 0;
+    }
+    .my-table .row{
+        height: 33.33%;
+    }
+    .my-table .col-md-4{
+        height: 100%;
+    }
+    .draggable-element{
+        /*border:1px solid red;*/
+        height: 100%;
+    }
+
+</style>
+<body>
+
+    <div class="page">
+
+        <div class="document">
+
+            <div class="my-table">
+                <div class="row">
+                    <div class="col-md-4 drop-area">
+                        <div class="draggable-element" data-drop-area=".drop-area">
+                            <img src="pin-marker.png" class="pin" data-drop-area=".drop-area">
+                        </div>
+                    </div>
+                    <div class="col-md-4 drop-area"></div>
+                    <div class="col-md-4 drop-area"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 drop-area">
+
+                    </div>
+                    <div class="col-md-4 drop-area"></div>
+                    <div class="col-md-4 drop-area"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 drop-area">
+
+                    </div>
+                    <div class="col-md-4 drop-area"></div>
+                    <div class="col-md-4 drop-area"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 drop-area">
+                        
+                    </div>
+                    <div class="col-md-4 drop-area"></div>
+                    <div class="col-md-4 drop-area"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+
+    (function($) {
+        $.fn.draggable = function(opt) {
+
+            var $el = this;
+
+            return $el.css('cursor', "move").on("mousedown", function(e) {
+
+                var $drag = $(this).addClass('draggable');
+
+                var z_idx = $drag.css('z-index'),
+                        drg_h = $drag.outerHeight(),
+                        drg_w = $drag.outerWidth(),
+                        pos_y = $drag.offset().top + drg_h - e.pageY,
+                        pos_x = $drag.offset().left + drg_w - e.pageX;
+                $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
+                    $('.draggable').offset({
+                        top:e.pageY + pos_y - drg_h,
+                        left:e.pageX + pos_x - drg_w
+                    }).on("mouseup", function() {
+                        $(this).removeClass('draggable').css('z-index', z_idx);
+                    });
+                });
+                e.preventDefault(); // disable selection
+
+            }).on("mouseup", function() {
+                console.log(
+                        $(this).css("left")
+                        +" : "+
+                        $(this).css("top")
+                );
+
+                $(this).removeClass('draggable');
+
+            });
+
+        }
+    })(jQuery);
+
+
+//    $('.draggable-element').draggable();
+    $(".draggable-element").dragndrop({
+        move : true,
+
+    });
+</script>
+</html>
