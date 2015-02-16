@@ -37,9 +37,10 @@
 
     <div class="page">
 
-        <div id="document" class="document drop-area">
+        <div id="document" class="document">
 
-            <img id="draggable-element" class="pin draggable-element" src="pin-marker.png">
+            <img class="pin draggable-element" src="pin-marker.png"/>
+            <img class="pin draggable-element" src="pin-marker.png"/>
 
         </div>
 
@@ -50,11 +51,19 @@
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="bower_components/draggabilly/dist/draggabilly.pkgd.min.js"></script>
 <script>
-    var elem = document.querySelector('.draggable-element');
-    var grid = 127;
-    var draggable =  new Draggabilly(elem,{
-        containment: '.document',
-        grid:[grid,grid]
+    var elements = $('.draggable-element');
+
+    $(elements).each(function(index){
+        var grid = 127;
+        var draggable =  new Draggabilly(elements[index],{
+            containment: '.document',
+            grid:[grid,grid]
+        });
     });
+
+
+
+
+
 </script>
 </html>
