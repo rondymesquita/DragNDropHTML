@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<style>
+
+    body{
+        background: #eee;
+    }
+
+    .page{
+        background: #fff;
+        width:1100px;
+        margin: auto;
+        min-height:200px;
+        padding:20px;
+    }
+    .document{
+        width:1024px;
+        height: 768px;
+        border:1px solid #aaa;
+        margin: auto;
+        background: url('middleearthMap.jpg');
+        overflow: hidden;
+    }
+    .pin{
+        width: 100px;
+    }
+
+</style>
+<body>
+
+    <div class="page">
+
+        <div id="document" class="document drop-area">
+
+            <img id="draggable-element" class="pin draggable-element" src="pin-marker.png">
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="bower_components/draggabilly/dist/draggabilly.pkgd.min.js"></script>
+<script>
+    var elem = document.querySelector('.draggable-element');
+    var draggable =  new Draggabilly(elem,{
+        containment: '.document',
+        grid:[50,50]
+    });
+</script>
+</html>
