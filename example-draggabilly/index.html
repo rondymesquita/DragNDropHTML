@@ -25,9 +25,11 @@
         margin: auto;
         background: url('middleearthMap.jpg');
         overflow: hidden;
+        /*border: 1px solid red;*/
     }
     .pin{
-        width: 100px;
+        width: 128px;
+        /*border: 1px solid red;*/
     }
 
 </style>
@@ -49,9 +51,10 @@
 <script src="bower_components/draggabilly/dist/draggabilly.pkgd.min.js"></script>
 <script>
     var elem = document.querySelector('.draggable-element');
+    var grid = 127;
     var draggable =  new Draggabilly(elem,{
         containment: '.document',
-        grid:[50,50]
+        grid:[grid,grid]
     });
 </script>
 </html>
